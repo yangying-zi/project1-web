@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realm of Epiphany</title>
+</head>
+<style>
+      body {
+      background-image: url("./hh.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height:2295px;
+      background-image: none;
+      overflow: hidden;
+    }
+    
+  #imglight {
+    pointer-events: none;
+    z-index:90;
+    
+  }
+
+
+  #intro {
+    position: absolute;
+    width: 30vw;
+    height: 80px;
+    background-color: rgb(2, 183, 2);
+    left: 35vw;
+    transform: translateY(-400px);
+    z-index: 82;
+
+    text-align: center;
+    color: #ffea00;
+    font-size: 18px;
+    font-weight: bold;
+
+  }
+
+  #intro-btn {
+    position: absolute;
+    right: 160px;
+    bottom: 10px;
+    background-color: #008cff;
+    color: #fff201;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+
+  #treeBox {
+    position: absolute;
+    width: 110vw;
+    height: 450px;
+    left: -100px; 
+    top: 1700px;
+    transform: translateY(-1000px);
+    background-color: rgba(1, 213, 246, 0.853);
+    z-index: 81;
+    overflow: hidden;
+    transform: scale(1.0);
+  }
+
+  #treeBox img {
+  position: relative;
+  top: -40px; /* 向上移动调整为负值 */
+  left: 60px;
+  transform: scale(0.65);
+  margin: -65px;
+  z-index: 82;
+  
+}
+
+#treeText {
+  position: absolute;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgb(255, 251, 0);
+  font-size: 24px;
+  z-index: 90;
+}
+
+
+#closeButton {
+  position: absolute;
+  bottom: 20px;
+  left: 51%;
+  transform: translateX(-50%);
+  background-color: #00c3ff;
+    color: #fff201;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#treeAniBox {
+    width: 400px;
+    height: 800px;
+    z-index: 81;
+    cursor: pointer;
+    transform: translateY(-840px);
+ 
+  }
+
+  #treeAniBox img {
+    height: 100%;
+    width: 120%;
+    left: 1980px;
+    top: 20px;
+  }
+
+  #treeAniBox:hover img {
+    display: block;
+  }
+  
+ 
+  #tree1 {
+    width: 500px;
+    transform: translateX(100px);
+    
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .hovered:hover {
+    cursor: pointer;
+  }
+
+
+
+  .no-pointer {
+    pointer-events: none;
+  }
+ 
+  #happywaterContainer {
+      position: absolute;
+      width: 500px;
+      height: 200px;
+      background-color: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      top: 200px;
+      left: 500px;
+      z-index: 111;
+    }
+
+#happywaterContainer img {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  transform: scale(0.45);
+  display: none;
+  z-index: 111;
+  
+}
+
+#happywaterContainer.show {
+  display: block;
+}
+
+#textContainer{
+  position: absolute;
+  top: 320px;
+color: #ff0000;
+  z-index: 112;
+left: 43%;
+}
+  #layer1 {
+    position: absolute;
+    z-index: 8;
+    top: 1520px;
+    left: 120px;
+    width: 1200px; /* 与 hh.jpg 相同宽度 */
+  }
+  #layer2 {
+    position: absolute;
+    z-index: 5;
+    top: 1580px;
+    left: 120px;
+    width: 1200px; /* 与 hh.jpg 相同宽度 */
+  }
+
+  #layer3 {
+    position: absolute;
+    z-index: 3;
+    top: 895px;
+    left: 120px;
+    width: 1200px; /* 与 hh.jpg 相同宽度 */
+  }
+
+  #layer4 {
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 120px;
+    width: 1200px; /* 与 hh.jpg 相同宽度 */
+  }
+  
+
+  .image-1,
+.image-2,
+.image-11,
+.image-111,
+.image-22,
+.image-222
+{
+  position: absolute;
+  left:120px;
+  width: 1200px;
+top: 600px;
+  z-index: 2;
+  transition: transform 8s, z-index 0.0001s;
+  transform: translateX(0%);
+}
+
+
+
+.image-1.active-right
+
+ {
+  transform: translateX(15%) scale(3.0);
+  z-index: 88;
+}
+.image-11.active-right
+
+ {
+  transform: translateX(15%) scale(3.0);
+  z-index: 86;
+}
+.image-111.active-right
+ {
+  transform: translateX(10%) scale(2.5);
+  z-index: 85;
+}
+
+.image-2.active-left
+
+{
+  transform: translateX(-5%) scale(3.0);
+  z-index: 88;
+}
+.image-22.active-left 
+{
+  transform: translateX(-5%) scale(3.0);
+  z-index: 88;
+}
+.image-222.active-left
+{
+  transform: translateX(-2%) scale(2.5);
+  z-index: 85;
+}
+ 
+</style>
+
+<script language="javascript">
+
+  window.location = "#bottom";//自动跳转到锚点处
+
+  window.onload = () => {
+
+    document.querySelector('#intro-btn').addEventListener('click', () => {
+    document.querySelector('#intro').classList.toggle('hide')
+    document.querySelector('#music').play()
+    var audio = document.getElementById("music");
+    audio.loop = true;
+    
+
+    
+
+  
+    document.querySelector('#treeAniBox').addEventListener('click', () => {
+      document.querySelector('#treeBox').classList.toggle('hide')
+    })
+    document.getElementById("closeButton").addEventListener("click", function() {
+    document.getElementById("treeBox").style.display = "none";
+    document.body.style.overflow = 'auto'
+  });
+
+
+      
+      document.getElementById("closeButton").addEventListener("click", function() {
+  var dialogContainer = document.getElementById("dialogContainer");
+     dialogContainer.classList.toggle("hide");
+   });
+
+
+
+    })
+
+
+
+ window.addEventListener('click', () => {
+      maker?.removeImg()
+      //document.querySelector('#treeBox')?.classList.toggle('hide')
+    })
+
+
+    class ElementMaker {
+      groups = ['love', 'home', 'work', 'school', 'kid']
+
+      constructor() {
+
+      }
+      update(event, stageIndex) {
+        const name = this.groups[stageIndex]
+        console.log(name);
+        const imgIndex = Math.floor(Math.random() * 11) + 1
+        const imgSrc = `./2/${name}/${imgIndex}.png`
+       
+        console.log(event);
+        const x = window.innerWidth * Math.random()
+        const y = event.pageY + Math.random() * window.innerHeight / 2 * (Math.random() > 0.5 ? 1 : -1)
+        name && this.makeImg(imgSrc, x, y)
+      }
+
+      removeImg() {
+        document.querySelectorAll('.ele-img').forEach((ele, i) => {
+          setTimeout(() => {
+            ele.remove()
+          }, i * 100);
+        })
+      }
+
+      makeImg(src, x, y) {
+        const img = document.createElement('img')
+        img.src = src
+
+        img.style.position = 'absolute'
+        img.style.left = x + 'px'
+        img.style.top = y + 'px'
+        img.style.transform = `scale(${Math.random() * 0.5 + 0.5})`
+        img.style.zIndex = 90
+        img.classList.add('ele-img')
+
+        document.body.append(img)
+      }
+    }
+
+    const maker = new ElementMaker()
+
+    document.querySelectorAll('.stage').forEach((stage, i) => {
+      stage.addEventListener('mouseover', (e) => {
+        maker.update(e, i)
+      })
+    })
+   const happyWaterContainer = document.getElementById('happywaterContainer');
+    const happyWaterImg = document.getElementById('happywaterImg');
+    const textContainer = document.getElementById('textContainer');
+    const music = document.getElementById('music');
+    const music1 = document.getElementById('music1');
+
+    // 添加点击事件监听器
+    happyWaterContainer.addEventListener('click', () => {
+      // 显示happywater.gif
+      happyWaterImg.style.display = 'block';
+      setTimeout(() => {
+    textContainer.style.display = 'block';
+  }, 4000);
+      // 切换音乐为music1
+      music.pause();
+      music.currentTime = 0;
+      music1.play();
+    });
+    document.querySelector('#treeAniBox').style.pointerEvents = 'none';
+document.querySelector('#intro-btn').addEventListener('click', () => {
+  // Enable interaction with treeAniBox after clicking intro-btn
+  document.querySelector('#treeAniBox').style.pointerEvents = 'auto';
+
+  });
+  
+
+  var scrollTriggered = false;
+
+var image1 = document.querySelector('.image-1');
+var image2 = document.querySelector('.image-2');
+var image11 = document.querySelector('.image-11');
+var image111 = document.querySelector('.image-111');
+var image22 = document.querySelector('.image-22');
+var image222 = document.querySelector('.image-222');
+
+window.addEventListener('scroll', function() {
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  var triggerPosition = 500;
+
+  if (!scrollTriggered && scrollTop <= triggerPosition) {
+    image1.classList.add('active-right');
+    image2.classList.add('active-left');
+    scrollTriggered = true;
+
+    setTimeout(function() {
+      image11.classList.add('active-right');
+      image22.classList.add('active-left');
+    }, 1000);
+    setTimeout(function() {
+      image111.classList.add('active-right');
+      image222.classList.add('active-left');
+    }, 1500);
+  } else if (scrollTriggered && scrollTop > triggerPosition) {
+    image1.classList.remove('active-right');
+    image2.classList.remove('active-left');
+    image11.classList.remove('active-right');
+    image22.classList.remove('active-left');
+    image222.classList.remove('active-left');
+    image111.classList.remove('active-right');
+    scrollTriggered = false;
+  }
+});
+
+
+
+  }
+
+</script>
+
+<body>
+  <img id="layer1" src="./p1.png" alt="" />
+  <img id="layer2" src="./river.gif" alt="" />
+  <img id="layer3" src="./p2.png" alt="" />
+  <img id="layer4" src="./p4.png" alt=""/>
+
+
+
+  <div class="image-group" >
+    <img class="image-1" src="./1.PNG" alt="">
+    <img class="image-11" src="./11.PNG" alt="">
+    <img class="image-2" src="./2.PNG" alt="">
+    <img class="image-22" src="./22.PNG" alt="">
+    <img class="image-222" src="./ 222.png " alt="">
+    <img class="image-111" src="./111.png" alt="">
+  </div>
+  </div>
+  
+
+
+
+  <audio id="music" src="./music.mp3"></audio>
+  <audio id="music1" src="./noice.mp3"></audio>
+
+  <p class="hovered no-pointer" style="position: absolute;left:160px;top: 1280px;z-index: 80;">
+    <img id="lightImg" class="no-pointer" src="./light.gif" width="94%" />
+  </p>
+  <div>
+    <!--锚点-->
+    <p style="text-align: center; background:local;" >
+      <img src="./hh.jpg" alt="" width="1200" />
+      <a name="bottom"></a>
+      <!--锚点处-->
+    </p>
+  </div>
+
+  <p id="treeAniBox" style="position:absolute;left: 494px;">
+      <img class="hide" src="./tree.gif" />
+    </p>
+
+  <div id="dialogContainer" class="hide">
+      
+    <p style="position:absolute;left: 950px;top: 1780px;z-index: 34;" >
+      <img src="./blank.png" alt="" width="90%" onmouseover="src='./talk.gif'"onmouseout="src='./blank.png'" />
+    </p>
+    <p style="position:absolute;left: 130px;top: 1950px;z-index: 34;">
+      <img class="change-color" src="./blank.png" alt="" width="35%" onmouseover="src='./word.gif'" onmouseout="src='./blank.png'" />
+    </p>
+  </div>
+ 
+
+
+  <div>
+
+      <p class="stage" style="position:absolute;left: 140px;top: 1200px;">
+        <img id="idNamelight" src="./blank.png" alt="" width="35%" onmouseover="src='./love.gif'" onmouseout="src='./blank.png'" />
+      </p>
+      <p class="stage" style="position:absolute;left: 110px;top: 950px;">
+
+        <img id="idNamelight" src="./blank.png" alt="" width="30%" onmouseover="src='./work.gif'"
+          onmouseout="src='./blank.png'" />
+      </p>
+      <p class="stage" style="position:absolute;left: 850px;top: 950px;">
+        <img id="idNamelight" src="./blank.png" alt="" width="70%" onmouseover="src='./home.gif'"
+          onmouseout="src='./blank.png'" />
+      </p>
+      <p class="stage" style="position:absolute;left: 550px;top: 1100px;">
+        <img id="idNamelight" src="./blank.png" alt="" width="50%" onmouseover="src='./school.gif'"
+          onmouseout="src='./blank.png'" />
+      </p>
+      <p class="stage" style="position:absolute;left: 950px;top: 1100px;">
+        <img id="idNamelight" src="./blank.png"alt="" width="85%" onmouseover="src='./kid.gif'"
+          onmouseout="src='./blank.png'" />
+      </p>
+  </div>
+
+  <div id="happywaterContainer">
+   <P><img id="happywaterImg" src="./happy.gif" alt="" width="700%"style="position:absolute;left: -1510px;top: -1000px;">
+  </P>  
+  </div>
+  <div id="textContainer" style="display: none;">
+   <strong>"We all must abide by the rules of this world."</strong>
+  </div>
+  
+  
+  
+
+  <div id="intro">
+    "We all must abide by the rules of this world."
+    <img src="" alt="">
+    <button id="intro-btn"><strong>ENTER</strong></button>
+  </div>
+
+  <div id="treeBox" class="hide">
+    <img id="tree1" src="./tree1.png" alt="">
+    <img id="tree1" src="./tree2.png" alt="">
+    <img id="tree1" src="./tree3.png" alt="">
+    <img id="tree1" src="./tree4.png" alt="">
+    <p id="treeText"><strong>A tree may take a decade to flourish, but nurturing a person's growth requires a century.</strong></p>
+  <button id="closeButton"><strong>CLOSE</strong></button>
+  </div>
+
+</body>
+
+</html>
